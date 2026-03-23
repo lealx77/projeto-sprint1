@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Persona — Lucas Navarro</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0d0d14; --surface:#13131f; --surface2:#1a1a2e; --border:#2a2a45;
+    --primary:#7c6af7; --red:#f7716a; --green:#43e8c8; --yellow:#f7c948;
+    --blue:#60b4ff; --pink:#f472b6; --text:#eeeef8; --muted:#7070a0;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    background:var(--bg); font-family:'Manrope',sans-serif; color:var(--text); min-height:100vh;
+    background-image: radial-gradient(ellipse at 15% 10%,rgba(124,106,247,0.12) 0%,transparent 55%),
+                      radial-gradient(ellipse at 85% 90%,rgba(67,232,200,0.07) 0%,transparent 50%);
+  }
+  .page { max-width:1060px; margin:0 auto; padding:40px 24px 80px; }
+
+  /* EDIT TOOLBAR */
+  
+  
+  
+  
+  
+  
+  
+  
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* HEADER */
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(124,106,247,0.12); border:1px solid rgba(124,106,247,0.3);
+    color:var(--primary); font-size:11px; font-weight:700;
+    letter-spacing:0.15em; text-transform:uppercase;
+    padding:6px 14px; border-radius:100px; margin-bottom:16px;
+  }
+  h1 { font-family:'Syne',sans-serif; font-size:clamp(30px,5vw,56px); font-weight:800; line-height:1.05; margin-bottom:8px; }
+  h1 em { font-style:normal; color:var(--primary); }
+  .header-sub { color:var(--muted); font-size:13px; font-weight:500; margin-bottom:48px; }
+
+  /* MAPA */
+  .mind-map {
+    display:grid;
+    grid-template-columns:1fr 200px 1fr;
+    grid-template-rows:auto auto auto;
+    gap:20px 24px;
+    align-items:center; justify-items:center;
+    margin-bottom:40px;
+  }
+
+  /* Avatar central */
+  .center-avatar { grid-column:2; grid-row:2; display:flex; flex-direction:column; align-items:center; gap:10px; z-index:2; }
+  .avatar-circle {
+    width:106px; height:106px; border-radius:50%;
+    background:linear-gradient(135deg,#7c6af7,#43e8c8);
+    display:flex; align-items:center; justify-content:center; font-size:52px;
+    box-shadow:0 0 0 6px rgba(124,106,247,0.15),0 0 48px rgba(124,106,247,0.35);
+    animation:pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100%{box-shadow:0 0 0 6px rgba(124,106,247,0.15),0 0 48px rgba(124,106,247,0.35)}
+    50%{box-shadow:0 0 0 14px rgba(124,106,247,0.07),0 0 64px rgba(124,106,247,0.5)}
+  }
+  .center-name { font-family:'Syne',sans-serif; font-size:18px; font-weight:800; text-align:center; }
+  .center-role { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--primary); text-align:center; }
+
+  /* BALÕES */
+  .balloon {
+    position:relative; z-index:2; background:var(--surface); border-radius:16px;
+    padding:18px 20px; border:1.5px solid; width:100%; max-width:270px;
+    animation:popIn 0.5s ease both; transition:transform 0.2s,box-shadow 0.2s;
+  }
+  .balloon:hover { transform:translateY(-3px); box-shadow:0 10px 36px rgba(0,0,0,0.3); }
+
+  /* triângulos */
+  .balloon::after {
+    content:''; position:absolute; width:11px; height:11px;
+    background:var(--surface); border:1.5px solid; border-color:inherit; transform:rotate(45deg);
+  }
+  .balloon.point-right::after { right:-6px; top:50%; margin-top:-6px; border-left:none; border-bottom:none; }
+  .balloon.point-left::after  { left:-6px;  top:50%; margin-top:-6px; border-right:none; border-top:none; }
+  .balloon.point-down::after  { bottom:-6px;left:50%;margin-left:-6px;border-left:none;border-top:none; }
+  .balloon.point-up::after    { top:-6px;   left:50%;margin-left:-6px;border-right:none;border-bottom:none; }
+
+  .b-icon  { font-size:20px; margin-bottom:7px; display:block; }
+  .b-title { font-family:'Syne',sans-serif; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; }
+  .b-item  { display:flex; align-items:flex-start; gap:8px; font-size:12px; font-weight:600; color:#bbbbd8; line-height:1.5; padding:5px 0; border-bottom:1px solid var(--border); }
+  .b-item:last-child { border-bottom:none; }
+  .b-dot   { width:5px; height:5px; border-radius:50%; flex-shrink:0; margin-top:6px; }
+  .b-sobre { font-size:12px; font-weight:600; color:#bbbbd8; line-height:1.7; }
+  .b-sobre strong { color:var(--text); font-weight:800; }
+  .b-text  { flex:1; }
+
+  /* cores */
+  .col-purple{border-color:rgba(124,106,247,0.4)}.col-purple .b-title{color:var(--primary)}.col-purple .b-dot{background:var(--primary)}
+  .col-green {border-color:rgba(67,232,200,0.4)} .col-green  .b-title{color:var(--green)}  .col-green  .b-dot{background:var(--green)}
+  .col-red   {border-color:rgba(247,113,106,0.4)}.col-red    .b-title{color:var(--red)}    .col-red    .b-dot{background:var(--red)}
+  .col-yellow{border-color:rgba(247,201,72,0.4)} .col-yellow .b-title{color:var(--yellow)} .col-yellow .b-dot{background:var(--yellow)}
+  .col-blue  {border-color:rgba(96,180,255,0.4)} .col-blue   .b-title{color:var(--blue)}   .col-blue   .b-dot{background:var(--blue)}
+  .col-pink  {border-color:rgba(244,114,182,0.4)}.col-pink   .b-title{color:var(--pink)}   .col-pink   .b-dot{background:var(--pink)}
+
+  /* posições */
+  .pos-tl{grid-column:1;grid-row:1;justify-self:end;  animation-delay:.05s}
+  .pos-tc{grid-column:2;grid-row:1;                   animation-delay:.10s}
+  .pos-tr{grid-column:3;grid-row:1;justify-self:start;animation-delay:.15s}
+  .pos-ml{grid-column:1;grid-row:2;justify-self:end;  animation-delay:.20s}
+  .pos-mr{grid-column:3;grid-row:2;justify-self:start;animation-delay:.25s}
+  .pos-bl{grid-column:1;grid-row:3;justify-self:end;  animation-delay:.30s}
+  .pos-bc{grid-column:2;grid-row:3;                   animation-delay:.35s}
+  .pos-br{grid-column:3;grid-row:3;justify-self:start;animation-delay:.40s}
+
+  /* ── MODO EDIÇÃO ── */
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+
+  /* botão adicionar item */
+  
+  
+  
+
+  /* DIVISOR */
+  .div-sec { display:flex; align-items:center; gap:14px; margin:36px 0 24px; color:var(--muted); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.15em; }
+  .div-sec::before,.div-sec::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  /* CARDS INFERIORES */
+  .bottom-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:24px; animation:popIn 0.5s 0.45s ease both; }
+  .card-title { font-family:'Syne',sans-serif; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:16px; }
+  .skill-row  { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .skill-name { font-size:12px; font-weight:700; color:var(--muted); min-width:115px; }
+  .skill-track{ flex:1; height:6px; background:var(--surface2); border-radius:100px; overflow:hidden; }
+  .skill-fill { height:100%; border-radius:100px; transition:width 0.4s; }
+  .skill-val  { font-size:11px; font-weight:800; min-width:30px; text-align:right; }
+  .info-row   { display:flex; justify-content:space-between; padding:8px 12px; background:var(--surface2); border-radius:8px; font-size:13px; margin-bottom:8px; }
+  .info-label { color:var(--muted); font-weight:600; }
+  .info-value { font-weight:700; }
+
+  /* QUOTE */
+  .quote-card {
+    background:linear-gradient(135deg,rgba(124,106,247,0.14),rgba(67,232,200,0.06));
+    border:1px solid rgba(124,106,247,0.25); border-radius:18px;
+    padding:28px 28px 24px; margin-bottom:16px; position:relative; overflow:hidden;
+    animation:popIn 0.5s 0.5s ease both;
+  }
+  .q-mark { font-family:'Syne',sans-serif; font-size:100px; color:rgba(124,106,247,0.13); position:absolute; top:-10px; left:16px; line-height:1; pointer-events:none; }
+  .q-text { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; line-height:1.6; color:var(--text); position:relative; z-index:1; padding-left:16px; border-left:3px solid var(--primary); margin-bottom:12px; }
+  .q-attr { font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; }
+
+  /* CHECKLIST */
+  .check-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; animation:popIn 0.5s 0.55s ease both; }
+  .check-item { display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--surface2); border-radius:10px; cursor:pointer; font-size:12px; font-weight:600; color:#bbbbd8; border:1px solid transparent; transition:border-color 0.2s; }
+  .check-item:hover { border-color:var(--primary); }
+  .check-item input { accent-color:var(--primary); width:15px; height:15px; flex-shrink:0; }
+
+  @keyframes popIn { from{opacity:0;transform:translateY(16px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+
+  @media(max-width:700px){
+    .mind-map{grid-template-columns:1fr}
+    .pos-tl,.pos-tc,.pos-tr,.pos-ml,.pos-mr,.pos-bl,.pos-bc,.pos-br{grid-column:1;grid-row:auto;justify-self:stretch}
+    .balloon{max-width:100%} .balloon::after{display:none}
+    .bottom-grid,.check-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+
+
+  <!-- HEADER -->
+  <div style="animation:popIn 0.4s ease both">
+    <h1><span>Lucas Navarro</span> — <em>16 anos</em></h1>
+    <p class="header-sub">Estudante de informática · Visitante do portfólio · Público-alvo: 13–17 anos</p>
+  </div>
+
+  <!-- MAPA MENTAL -->
+  <div class="mind-map">
+
+    <div class="balloon col-purple point-right pos-tl">
+      <span class="b-icon">🧒</span>
+      <div class="b-title">Quem é ele</div>
+      <p class="b-sobre">Meu nome é <strong>Lucas Navarro</strong>, tenho <strong>16 anos</strong> e moro em <strong>São Paulo, Brazil</strong>. Estou cursando o ensino médio técnico em Informática e já tenho grande interesse por desenvolvimento de software. Nas horas vagas assisto tutoriais no YouTube, exploro projetos no GitHub e aprendo programação por conta própria. Meu sonho é trabalhar com tecnologia antes dos 18 anos e construir projetos que façam diferença.</p>
+    </div>
+
+    <div class="balloon col-blue point-down pos-tc">
+      <span class="b-icon">💭</span>
+      <div class="b-title">O que ele pensa</div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">"Preciso montar meu portfólio logo"</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">"Será que preciso saber tudo antes?"</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">"Quero trabalhar antes dos 18"</span></div>
+    </div>
+
+    <div class="balloon col-pink point-left pos-tr">
+      <span class="b-icon">❤️</span>
+      <div class="b-title">O que ele sente</div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Empolgação com tecnologia</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Ansiedade de não ser bom o bastante</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Orgulho quando aprende algo novo</span></div>
+    </div>
+
+    <div class="balloon col-yellow point-right pos-ml">
+      <span class="b-icon">📱</span>
+      <div class="b-title">O que ele usa</div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">TikTok e Instagram (tech)</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">YouTube — tutoriais de código</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Discord — servidores de dev</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">GitHub — explorar projetos</span></div>
+    </div>
+
+    <div class="center-avatar">
+      <div class="avatar-circle">🧑‍💻</div>
+      <div class="center-name">Lucas</div>
+    </div>
+
+    <div class="balloon col-green point-left pos-mr">
+      <span class="b-icon">👀</span>
+      <div class="b-title">O que quer ver</div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Projetos reais funcionando</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Tecnologias usadas (badges)</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Link do GitHub em destaque</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Design moderno, não de 2010</span></div>
+    </div>
+
+    <div class="balloon col-red point-right pos-bl">
+      <span class="b-icon">😤</span>
+      <div class="b-title">O que o afasta</div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Site lento ou quebrado no mobile</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Só texto, sem prints ou demos</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Visual genérico de template</span></div>
+    </div>
+
+    <div class="balloon col-yellow point-up pos-bc">
+      <span class="b-icon">⚡</span>
+      <div class="b-title">Como ele age</div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Acessa principalmente pelo celular</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Sai em 30s se não há visual</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Clica no GitHub antes de ler</span></div>
+    </div>
+
+    <div class="balloon col-purple point-left pos-br">
+      <span class="b-icon">🎯</span>
+      <div class="b-title">Objetivos</div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Inspirar seu próprio portfólio</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Avaliar o nível técnico real</span></div>
+      <div class="b-item"><div class="b-dot"></div><span class="b-text">Encontrar referências de projetos</span></div>
+    </div>
+
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-card">
+    <div class="q-mark">"</div>
+    <div class="q-text">"Se o portfólio não tem nada pra eu clicar e testar, eu não sei se a pessoa sabe programar de verdade ou só copiou tutorial do YouTube."</div>
+    <div class="q-attr">— Lucas, 16 anos</div>
+  </div>
+
+
+</div>
+
+<script>
+  // Temas
+  const themes = {
+    dark:  { '--bg':'#0d0d14','--surface':'#13131f','--surface2':'#1a1a2e','--border':'#2a2a45','--text':'#eeeef8','--muted':'#7070a0' },
+    light: { '--bg':'#f4f4fb','--surface':'#ffffff','--surface2':'#eeeef8','--border':'#d8d8ec','--text':'#1a1a2e','--muted':'#8888aa' },
+    green: { '--bg':'#09120f','--surface':'#0f1f18','--surface2':'#162a20','--border':'#1e3d2a','--text':'#e0f5ec','--muted':'#5a8a70','--primary':'#3ddb8a' },
+  };
+</script>
+</body>
+</html>
