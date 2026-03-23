@@ -13,4 +13,4 @@ Definição da Persona do projeto de portfólio pessoal.
 *Lucas Navarro*, 16 anos — estudante de informática que busca referências para montar seu próprio portfólio.
 
 ## 👨‍💻 Autor
-Paulo Leal — ADS" 
+Paulo Leal — ADS" (https://github.com/lealx77/projeto-sprint1)
